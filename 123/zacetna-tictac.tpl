@@ -39,7 +39,7 @@
         margin: 30px;
     }
 
-</style>
+ </style>
 <body>
 <h1>Igra križec-krožec</h1>
 <h2>Projekt pri predmetu UVP</h2>
