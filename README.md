@@ -1,5 +1,5 @@
 # krizec-krozec-uvp
-Projektna naloga križec krožec pri projektu UVP.
+Projektna naloga križec krožec pri predmetu UVP.
 V programu igramo igro križec-krožec proti računalniku. Igralec je vedno križec, računalnik pa krožec. Mogoče so 3 stopnje zahtevnosti, lahka, srednja in težka. 
 
 Pri lahki so poteze računalnika naključne.
