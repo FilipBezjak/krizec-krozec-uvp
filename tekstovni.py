@@ -11,6 +11,7 @@ def konec():
         izpis_neodločeno()
     elif model.ZMAGOVALEC == "X" or model.ZMAGOVALEC == "O" :
         izpis_zmage()
+        tabela.pokazi()
     if not model.ZMAGOVALEC == None:
         nova_igra()
 
