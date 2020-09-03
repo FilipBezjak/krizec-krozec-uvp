@@ -273,8 +273,6 @@ Ste na vrsti. Kliknite na polje.
         </table>
         </div>
         <div class="column">
-
-                
                 <p>
                         <big><big><big><big><big><big>X  :   O</big></big></big></big></big></big>
                 </p>
