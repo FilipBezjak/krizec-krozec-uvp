@@ -125,19 +125,37 @@ Ste na vrsti. Kliknite na polje.
                                 <button class="button is-large"  style="border-radius: 40px; margin: 15px;white-space: normal; height:100.2px;width:180px;background-color:aquamarine "name = "reset" value = "X" type = "submit">Nova igra <br/> Začne X</button>
                         </p>
                         <p>
-                                <form action="/igra0/" method="post">
-                                <button style="background-color:rgb(117, 212, 243)" id=teza name="tezavnost" value="Lahko" type="submit">Lahko</button>
+                                %if tabela.Tezavnost == "Lahko":
+                                <form action="/igra/" method="post">
+                                        <button style="color:Black; background-color:rgb(117, 212, 243)" id=teza name="tezavnost" value="Lahko" type="submit">Lahko</button>
                                 </form>
+                                %else:
+                                <form action="/igra/" method="post">
+                                        <button style="background-color:rgb(117, 212, 243)" id=teza name="tezavnost" value="Lahko" type="submit">Lahko</button>
+                                </form>
+                                %end
                         </p>
                         <p>
-                              <form action="/igra/" method="post">
-                                <button style="background-color:rgb(236, 236, 145)" id=teza name="tezavnost" value="Srednje" type="submit">Srednje</button>
-                              </form>
+                                %if tabela.Tezavnost == "Srednje":
+                                <form action="/igra/" method="post">
+                                        <button style="color:Black; background-color:rgb(236, 236, 145" id=teza name="tezavnost" value="Srednje" type="submit">Srednje</button>
+                                </form>
+                                %else:
+                                <form action="/igra/" method="post">
+                                        <button style="background-color:rgb(236, 236, 145)" id=teza name="tezavnost" value="Srednje" type="submit">Srednje</button>
+                                </form>
+                                %end
                       </p>
                       <p>
+                              %if tabela.Tezavnost == "Težko":
                                 <form action="/igra/" method="post">
-                                <button style="background-color:rgb(253, 133, 133)" id=teza name="tezavnost" value="Težko" type="submit">Težko</button>
+                                        <button style="color:Black; background-color:rgb(253, 133, 133)" id=teza name="tezavnost" value="Težko" type="submit">Težko</button>
                                 </form>
+                                %else:
+                                <form action="/igra/" method="post">
+                                        <button style="background-color:rgb(253, 133, 133)" id=teza name="tezavnost" value="Težko" type="submit">Težko</button>
+                                </form>
+                                %end
                         </p>
                 </form>
         </div>
