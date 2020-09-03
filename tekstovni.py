@@ -4,7 +4,7 @@ tabela = model.Tabela()
 
 def zacetek():
     print("Igrate proti računalniku, vi ste igralec X.")
-    
+
 def konec():
     tabela.konec()
     if model.ZMAGOVALEC == False:

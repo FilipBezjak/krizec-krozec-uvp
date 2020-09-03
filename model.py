@@ -31,22 +31,22 @@ class Tabela():
     def je_zmaga(self):
         global ZMAGOVALEC
         #poglej vrstice
-        zmagovalec_vrstice=self.poglej_vrstice()
+        zmagovalec_vrstice = self.poglej_vrstice()
         #poglej stolpce
-        zmagovalec_stolpci=self.poglej_stolpce()
+        zmagovalec_stolpci = self.poglej_stolpce()
         #poglej diagonale mora biti self. ker gledas matodo na objektu tabela
-        zmagovalec_diagonale=self.poglej_diagonale()
+        zmagovalec_diagonale = self.poglej_diagonale()
         if zmagovalec_vrstice:
-            ZMAGOVALEC=zmagovalec_vrstice
+            ZMAGOVALEC = zmagovalec_vrstice
             return True
         elif zmagovalec_diagonale:
-            ZMAGOVALEC=zmagovalec_diagonale
+            ZMAGOVALEC = zmagovalec_diagonale
             return True
         elif zmagovalec_stolpci:
-            ZMAGOVALEC=zmagovalec_stolpci
+            ZMAGOVALEC = zmagovalec_stolpci
             return True
         else:
-            ZMAGOVALEC=None
+            ZMAGOVALEC = None
         return False
 
 
@@ -70,9 +70,9 @@ class Tabela():
 
     def poglej_vrstice(self):
         #poglej, ce imajo vse enako vrednost in  niso prazne
-        prva_vrstica= self.kvadratki[0] == self.kvadratki[1] == self.kvadratki[2] != "-"
-        druga_vrstica= self.kvadratki[3] == self.kvadratki[4] == self.kvadratki[5] != "-"
-        tretja_vrstica= self.kvadratki[6] == self.kvadratki[7] == self.kvadratki[8] != "-"
+        prva_vrstica = self.kvadratki[0] == self.kvadratki[1] == self.kvadratki[2] != "-"
+        druga_vrstica = self.kvadratki[3] == self.kvadratki[4] == self.kvadratki[5] != "-"
+        tretja_vrstica = self.kvadratki[6] == self.kvadratki[7] == self.kvadratki[8] != "-"
         if prva_vrstica or druga_vrstica or tretja_vrstica:
             #pove ali je zmagovalec x ali 0
             if prva_vrstica:
@@ -85,8 +85,8 @@ class Tabela():
 
     def poglej_diagonale(self):
         #poglej, ce imajo vse enako vrednost in  niso prazne
-        prva_diagonala= self.kvadratki[0] == self.kvadratki[4] == self.kvadratki[8] != "-"
-        druga_diagonala= self.kvadratki[6] == self.kvadratki[4] == self.kvadratki[2] != "-"
+        prva_diagonala = self.kvadratki[0] == self.kvadratki[4] == self.kvadratki[8] != "-"
+        druga_diagonala = self.kvadratki[6] == self.kvadratki[4] == self.kvadratki[2] != "-"
         if prva_diagonala or druga_diagonala:
                 #pove ali je zmagovalec x ali 0
             if prva_diagonala:
@@ -112,7 +112,7 @@ class Tabela():
 
 
     def omogoči_zmago(self, poteza):
-        omogocijo1 = self.stevilo_moznosti_za_zmago_igralca()        
+        omogocijo1 = self.stevilo_moznosti_za_zmago_igralca()
         self.kvadratki[poteza]="O"
         #da racunalnik izbere to polje in onemogoči zmago nasprotniku
         omogocijo2 = self.stevilo_moznosti_za_zmago_igralca()
@@ -121,8 +121,8 @@ class Tabela():
         else:
             self.kvadratki[poteza] = "-"
             return True
-# vse moznosti za zmago v kosarico, potem pa jih removamo. ce sta na voljo 2 in obe omogocita
-#zmago, da random
+
+
     def moznost_za_zmago(self):
         #pogleda, ali ima racunalnik moznost za zmago v naslednji potezi
         #preveri, ali sta na kaki diagonali, vrstici ali stolpcu 2 "O"-ja in en "-",
@@ -166,8 +166,8 @@ class Tabela():
                 self.update_tabelo(poteza, "O")
 
     def izbira_poteze(self):
-        izbira=[i for i in range(9) if self.kvadratki[i] == "-"]
-        poteza=random.choice(izbira)
+        izbira = [i for i in range(9) if self.kvadratki[i] == "-"]
+        poteza = random.choice(izbira)
         return [poteza, izbira]
 
     def preveri_izbiro(self, poteza):
@@ -260,3 +260,4 @@ def je_stevilo(s):
         return True
     except ValueError:
         return False
+#12deafaefa dfasdfa sdfasd fasdfasd s
