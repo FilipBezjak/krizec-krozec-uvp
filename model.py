@@ -2,7 +2,7 @@ import os
 import random
 os.system("cls")
 #tisti, ki igra je vedno X, računalnik pa O
-igralec="X"
+igralec="O"
 ZMAGOVALEC=None
 Tezavnost = "Težko"
 o=0
@@ -228,6 +228,8 @@ class Tabela():
             return self.napad_na_zmago()
 
     def napad_na_zmago(self):
+        if self.kvadratki.count("-") == 1 :
+            return self.kvadratki.index("-")
         izbire = self.izbira_poteze()[1]
         random.shuffle(izbire)
         self.kvadratki[izbire[-1]] = "O"
@@ -260,4 +262,3 @@ def je_stevilo(s):
         return True
     except ValueError:
         return False
-#12deafaefa dfasdfa sdfasd fasdfasd s
