@@ -1,10 +1,11 @@
 # krizec-krozec-uvp
 Projektna naloga križec krožec pri projektu UVP.
 V programu igramo igro križec-krožec proti računalniku. Igralec je vedno križec, računalnik pa krožec. Mogoče so 3 stopnje zahtevnosti, lahka, srednja in težka. 
+
 Pri lahki so poteze računalnika naključne.
 
 Pri srednji so naključne, razen ko ima na primer igralec 2 križca v vrstici,
-potem mu zmago onemogoči ali pa ko ima računalnik možnost za zmago. 
+potem mu zmago onemogoči ali pa, ko ima računalnik možnost za zmago, to možnost izkoristi. 
 
 Težka zahtevnost ima, zraven vseh možnosti srednje, še dodano:
 - "napadanje" igralca, da se mora ta braniti, 
