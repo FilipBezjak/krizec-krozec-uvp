@@ -69,12 +69,12 @@ class Tabela():
             return
 
     def poglej_vrstice(self):
-        #poglej, ce imajo vse enako vrednost in  niso prazne
+#        poglej, ce imajo vse enako vrednost in  niso prazne
         prva_vrstica = self.kvadratki[0] == self.kvadratki[1] == self.kvadratki[2] != "-"
         druga_vrstica = self.kvadratki[3] == self.kvadratki[4] == self.kvadratki[5] != "-"
         tretja_vrstica = self.kvadratki[6] == self.kvadratki[7] == self.kvadratki[8] != "-"
         if prva_vrstica or druga_vrstica or tretja_vrstica:
-            #pove ali je zmagovalec x ali 0
+#            pove ali je zmagovalec x ali 0
             if prva_vrstica:
                 return self.kvadratki[0]
             elif druga_vrstica:
@@ -84,11 +84,11 @@ class Tabela():
             return
 
     def poglej_diagonale(self):
-        #poglej, ce imajo vse enako vrednost in  niso prazne
+#        poglej, ali imajo vse enako vrednost in  niso prazne
         prva_diagonala = self.kvadratki[0] == self.kvadratki[4] == self.kvadratki[8] != "-"
         druga_diagonala = self.kvadratki[6] == self.kvadratki[4] == self.kvadratki[2] != "-"
         if prva_diagonala or druga_diagonala:
-                #pove ali je zmagovalec x ali 0
+#                pove ali je zmagovalec x ali 0
             if prva_diagonala:
                 return self.kvadratki[0]
             elif druga_diagonala:
@@ -106,7 +106,7 @@ class Tabela():
         omogocijo = 0
         for trojka in trojke:
             if "X" in trojka and trojka.count("X") == 2 and "O" not in trojka:
-        #preveri, ali sta na kaki diagonali, vrstici ali stolpcu 2 "X"-a in en "-",
+#        preveri, ali sta na kaki diagonali, vrstici ali stolpcu 2 "X"-a in en "-",
                 omogocijo += 1
         return omogocijo
 
@@ -123,8 +123,8 @@ class Tabela():
 
 
     def moznost_za_zmago(self):
-        #pogleda, koliko moznost za zmago ima racunalnik v naslednji potezi,
-        #da racunalnik izbere to polje in zmaga
+#        pogleda, koliko moznost za zmago ima racunalnik v naslednji potezi,
+#        da racunalnik izbere to polje in zmaga
         moznosti = []
         for a in self.izbira_poteze()[1]:
             self.kvadratki[a] = "O"
@@ -138,7 +138,7 @@ class Tabela():
 
     def racunalnik_poteza(self):
         poteza, izbira = self.izbira_poteze()
-        #pogleda, če naslednja poteza omogoči nasprotniku zmago
+        #pogleda, ali naslednja poteza omogoči nasprotniku zmago
         while self.omogoči_zmago(poteza):
             if len(izbira) == 1:
                 return izbira[0]
