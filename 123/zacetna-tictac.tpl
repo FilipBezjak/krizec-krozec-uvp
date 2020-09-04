@@ -79,5 +79,5 @@
   <article  class="tile is-child notification is-primary">
     <p style="margin:auto" class="title">Izberi težavnost</p>
   </article>
-</div>></div>
+</div></div>
 </body>
