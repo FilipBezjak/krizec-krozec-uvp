@@ -2,7 +2,7 @@ import os
 import random
 os.system("cls")
 #tisti, ki igra je vedno X, računalnik pa O
-igralec="O"
+igralec="X"
 ZMAGOVALEC=None
 Tezavnost = "Težko"
 o=0
@@ -110,11 +110,10 @@ class Tabela():
                 omogocijo += 1
         return omogocijo
 
-
+# preveri, ali poteza igralcu omogoči zmago
     def omogoči_zmago(self, poteza):
         omogocijo1 = self.stevilo_moznosti_za_zmago_igralca()
         self.kvadratki[poteza]="O"
-        #da racunalnik izbere to polje in onemogoči zmago nasprotniku
         omogocijo2 = self.stevilo_moznosti_za_zmago_igralca()
         if omogocijo1 == 0 or omogocijo1 > omogocijo2:
                 return False
@@ -124,8 +123,7 @@ class Tabela():
 
 
     def moznost_za_zmago(self):
-        #pogleda, ali ima racunalnik moznost za zmago v naslednji potezi
-        #preveri, ali sta na kaki diagonali, vrstici ali stolpcu 2 "O"-ja in en "-",
+        #pogleda, koliko moznost za zmago ima racunalnik v naslednji potezi,
         #da racunalnik izbere to polje in zmaga
         moznosti = []
         for a in self.izbira_poteze()[1]:
@@ -170,21 +168,6 @@ class Tabela():
         poteza = random.choice(izbira)
         return [poteza, izbira]
 
-    def preveri_izbiro(self, poteza):
-        #prvo preveri, ali je poteza število
-        if je_stevilo(poteza):
-            #ga zmanjša za 1, zaradi pythonovega načina štetja
-            poteza = int(poteza)-1
-            #preveri, ali je med 1 in 9 in, ali je to mesto prosto
-            if  0<=poteza<=8:
-                if self.kvadratki[poteza] == "-":
-                    return True
-                else:
-                    return 1
-            else:
-                return 2
-        else:
-            return 3
 
     def menjaj_igralca(self):
         global igralec
@@ -194,12 +177,14 @@ class Tabela():
         else:
             igralec = "O"
 
+# preveri, ali je igre konec
     def konec(self):
         if self.je_zmaga():
             return True
         elif self.je_neodločeno():
             return True
 
+# seznam vseh diagonal, stolpceh, vrstic
     def seznam_trojk(self):
         a = [self.kvadratki[0],self.kvadratki[1],self.kvadratki[2]]
         b = [self.kvadratki[3],self.kvadratki[4],self.kvadratki[5]]
@@ -211,29 +196,32 @@ class Tabela():
         h = [self.kvadratki[6],self.kvadratki[4],self.kvadratki[2]]
         return [i for i in [a,b,c,d,e,f,g,h]]
 
+# preveri, ali je igra enaka kateri izmed spodaj napisanih. Potem vrne najboljšo možno potezo
     def poteza(self):
-        if "X" not in self.kvadratki:
+        polje = self.kvadratki
+        if "X" not in polje:
             return random.choice([0,2,6,8])
-        elif "O" in self.kvadratki and self.kvadratki.count("O") == 1 and self.kvadratki.index("X") == 4:
+        elif "O" in polje and polje.count("O") == 1 and polje.index("X") == 4:
             return self.nasproti()
-        elif "O" in self.kvadratki and self.kvadratki.count("O") == 1 and self.kvadratki.index("X") in [1, 3, 5, 7]:
+        elif "O" in polje and polje.count("O") == 1 and polje.index("X") in [1, 3, 5, 7]:
             return 4
-        elif self.kvadratki.count("O") == 2 and self.kvadratki.index("X") in [1, 3, 5, 7] and self.kvadratki.count("X") == 2:
-            if self.moznost_za_zmago():
-                return self.moznost_za_zmago()[0]
-            return self.izbira_poteze()[0]
+        elif polje.count("O") == 2 and 4 in [i for i, x in enumerate(polje) if x == "O"] and polje.count("X") == 2 and enak_element([i for i, x in enumerate(polje) if x == "X"],[1, 3, 5, 7]):
+            return self.napad_na_zmago(2)
+        elif "O" not in polje:
+            return random.choice([i for i in [4, self.nasproti()] if polje[i] != "X"])
         elif self.moznost_za_zmago():
             return self.moznost_za_zmago()[0]
         elif self.izbira_poteze()[1]:
-            return self.napad_na_zmago()
+            return self.napad_na_zmago(1)
 
-    def napad_na_zmago(self):
+#potezo postavi tako, da ima pri naslednji potezi n možnosti za zmago. Če je n enak 2, je zmaga zagotovljena
+    def napad_na_zmago(self, n):
         if self.kvadratki.count("-") == 1 :
             return self.kvadratki.index("-")
         izbire = self.izbira_poteze()[1]
         random.shuffle(izbire)
         self.kvadratki[izbire[-1]] = "O"
-        while not self.moznost_za_zmago():
+        while self.moznost_za_zmago() != False and len(self.moznost_za_zmago()) < n:
             if len(izbire) > 1:
                 self.kvadratki[izbire[-1]] = "-"
                 izbire.pop()
@@ -244,21 +232,22 @@ class Tabela():
         self.kvadratki[izbire[-1]] = "-"
         return izbire[-1]
 
+# da potezo v kot, ki je nasproti že zasedenega polja
     def nasproti(self):
-        if self.kvadratki[0] == "O":
+        if self.kvadratki[0] != "-" :
             return 8
-        elif self.kvadratki[2] == "O":
+        elif self.kvadratki[2] != "-" :
             return 6
-        elif self.kvadratki[6] == "O":
+        elif self.kvadratki[6] != "-" :
             return 2
-        elif self.kvadratki[8] == "O":
+        elif self.kvadratki[8] != "-" :
             return 0
 
-
-
-def je_stevilo(s):
-    try:
-        float(s)
-        return True
-    except ValueError:
-        return False
+    
+#preveri, ali imata 2 seznama vsaj en enak element
+def enak_element(sez1, sez2):
+    for x in sez1:
+        for y in sez2:
+            if x == y:
+                return True
+    return False
