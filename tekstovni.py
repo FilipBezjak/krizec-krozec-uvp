@@ -37,6 +37,7 @@ def preveri_izbiro(poteza):
             return False
     else:
         print(str(poteza) +" ni število.")
+        tabela.pokazi()
         return False
 
 def izpis_zmage():
