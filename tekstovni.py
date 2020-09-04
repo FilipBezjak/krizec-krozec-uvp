@@ -28,20 +28,20 @@ def preveri_izbiro(poteza):
             if tabela.kvadratki[poteza] == "-":
                 return True
             else:
-                print("Kvadratek "+str(poteza+1)+ " ni na voljo.")
+                print("Kvadratek " + str(poteza+1) + " ni na voljo.")
                 tabela.pokazi()
                 return False
         else:
-            print(str(poteza + 1) +" ni število med 1 in 9.")
+            print(str(poteza + 1) + " ni število med 1 in 9.")
             tabela.pokazi()
             return False
     else:
-        print(str(poteza) +" ni število.")
+        print(str(poteza) + " ni število.")
         tabela.pokazi()
         return False
 
 def izpis_zmage():
-    if model.ZMAGOVALEC=="O":
+    if model.ZMAGOVALEC == "O":
         print("Žal vas je računalnik premagal.")
     else:
         print("Zmagali ste, čestitam")
@@ -53,8 +53,8 @@ def izpis_neodločeno():
 #ko končamo, nam da možnost da ponovno začnemo
 def nova_igra():
     global tabela
-    dane=input("Bi igrali novo igro? Napišite DA ali NE: ")
-    if dane=="DA" or dane=="Da" or dane=="da":
+    dane = input("Bi igrali novo igro? Napišite DA ali NE: ")
+    if dane == "DA" or dane == "Da" or dane == "da":
         tabela.reset()
         igraj()
 
@@ -65,8 +65,8 @@ def igraj():
         #preveri, ali je igra končana
         #če je na potezi računalnik, se izvede računalnik_na potezi
         #če ne pa zahteva vnos
-        if model.igralec=="X":
-            izbira=zahtevaj_vnos()
+        if model.igralec == "X":
+            izbira = zahtevaj_vnos()
         #preveri, ali je vnos stevilo med 1 in 9
             while not preveri_izbiro(izbira):
                 izbira=zahtevaj_vnos()
