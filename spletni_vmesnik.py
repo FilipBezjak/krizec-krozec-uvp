@@ -5,7 +5,6 @@ tabela=model.Tabela()
 @bottle.get("/")
 #zacetno stran naredimo v drugi datoteki
 def zacetna_stran():
-#    return "zdravo"
     return bottle.template("123/zacetna-tictac.tpl")
 
 @bottle.get('/igra/')
